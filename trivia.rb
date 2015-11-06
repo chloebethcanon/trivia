@@ -25,6 +25,7 @@ class Deck
     trivia_data.each do |question, answer|
       @cards << Card.new(question, answer)
     end
+    @cards.shuffle!
   end
 
   def remaining_cards
@@ -32,16 +33,40 @@ class Deck
   end
 
   def draw_card
-    @cards.shift
+    current_card = @cards.shift
+    puts current_card.answer
   end
 
 end
 
 trivia_data = {
-  "What is the capital of Illinois?" => "Springfield",
-  "Is Africa a country or a continent?" => "Continent",
-  "Tug of war was once an Olympic event. True or false?" => "True"
+  "What is the capital of Illinois?" => ["Springfield", "Chicago", "Urbana"],
+  # "What is the capital of Illinois?" => {a: "Springfield", b: "Boston", c: "Chicago", answer: "a"}
+  "Is Africa a country or a continent?" => ["Continent", "Country"],
+  "Tug of war was once an Olympic event. True or false?" => ["True", "False"]
 }
+
+# trivia_data = [
+#   {
+#     question: "What is the capital of Illinois?",
+#     choices: "Springfield", "Chicago", "Timbuktu", "Peoria",
+#     answer: 0
+#   }
+#   {
+#     question:
+#     choices:
+#     answer:
+#   }
+#   {
+#     question:
+#     choices:
+#     answer:
+#   }
+# ]
+
+# trivia_data = {
+#   "What is the capital of Illinois? A. Springfield B. Chicago" => "B"
+# }
 
 deck = Deck.new(trivia_data) # deck is an instance of the Deck class
 
